@@ -6,6 +6,7 @@ img1.src = 'bbwbb.jpg'
 
 const inputSlider = document.getElementById('resolution')
 const inputLabel = document.getElementById('resolutionLabel')
+const hidden = document.getElementById('hidden')
 
 inputSlider.addEventListener('change', handleSlider)
 
@@ -99,20 +100,20 @@ let effect
 
 function handleSlider(){
     if(inputSlider.value == 1){
-        inputLabel.innerHTML = 'Original'
+        inputLabel.innerHTML = 'Surprise!'
         ctx.drawImage(img1, 0, 0, canvas.width, canvas.height)
+        hidden.style.visibility = 'visible'
     } else{
         inputLabel.innerHTML = 'Resolution: ' + inputSlider.value + ' px'
         ctx.font = parseInt(inputSlider.value) * 1.2 + 'px Roboto'
         effect.draw(parseInt(inputSlider.value))
-        
+        hidden.style.visibility = 'hidden'
     }
 }
+
 img1.onload = function initialize(){
     canvas.width = img1.width
     canvas.height = img1.height
-    console.log(canvas.width)
-    console.log(canvas.height)
 
     effect = new AsciiEffect(ctx, img1.width, img1.height)
     handleSlider()
